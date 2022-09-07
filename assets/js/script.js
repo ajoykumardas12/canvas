@@ -17,6 +17,3 @@ let canvas3 = document.getElementById('my-canvas3');
 let ctx3 = canvas3.getContext('2d');
 ctx3.arc(500, 200, 150, 0, 2*(Math.PI));
 ctx3.fill();
-
-let canvas4 = document.getElementById('my-canvas4');
-let ctx4 = canvas3.getContext('2d');
