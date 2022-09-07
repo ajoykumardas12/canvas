@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smiley</title>
+    <style>
+        body{
+    text-align: center;
+    }
+    #my-canvas{
+        border: 2px solid #aab;
+    }
+    </style>
+</head>
+<body>
+    <canvas id="my-canvas" width="600" height="600"></canvas>
+    
+    <script>
+        let canvas = document.getElementById('my-canvas');
+        let ctx = canvas.getContext('2d');
+
+        const centreX = canvas.width/2;
+        const centreY = canvas.height/2;
+
+        ctx.lineWidth = 2;
+        ctx.arc(centreX, centreY, 200, 0, 2*Math.PI);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(230, 230, 20, 0, 2*Math.PI);
+        ctx.moveTo(390, 230);
+        ctx.arc(370, 230, 20, 0, 2*Math.PI);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(centreX, centreY, 130, 0, Math.PI);
+        ctx.stroke();
+    </script>
+</body>
+</html>
