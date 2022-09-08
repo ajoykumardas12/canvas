@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smiley</title>
+    <style>
+        body{
+    text-align: center;
+    }
+    #my-canvas{
+        border: 2px solid #aab;
+    }
+    </style>
+</head>
+<body>
+    <canvas id="my-canvas" width="600" height="600"></canvas>
+    
+    <script>
+        let canvas = document.getElementById('my-canvas');
+        let ctx = canvas.getContext('2d');
+
+        const circle = {
+            x: 200,
+            y: 200,
+            size: 30,
+            dx: 5,
+            dy: 4
+        }
+
+        function drawCircle() {
+            ctx.beginPath();
+            ctx.arc(circle.x, circle.y, circle.size, 0, 2*Math.PI);
+            ctx.fillStyle = 'purple';
+            ctx.fill();
+        }
+
+        function update() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            drawCircle();
+
+            //change position
+            circle.x += circle.dx;
+            circle.y += circle.dy;
+
+            //detect side walls
+            if(circle.x + circle.size >canvas.width || circle.x - circle.size < 0) {
+                circle.dx *= -1;
+            }
+            
+            //detect top and bottom walls
+            if(circle.y + circle.size >canvas.width || circle.y - circle.size < 0) {
+                circle.dy *= -1;
+            }
+
+            requestAnimationFrame(update);
+        }
+
+        update();
+
+    </script>
+</body>
+</html>
