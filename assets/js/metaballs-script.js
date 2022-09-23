@@ -4,13 +4,6 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 ctx.fillStyle = 'white';
 
-//resize canvas when window is resized
-window.addEventListener('resize', function() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-});
-
 class Ball {
     constructor(effect){
         this.effect = effect;
@@ -31,6 +24,10 @@ class Ball {
         context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         context.fill();
     }
+    reset(){
+        this.x = this.effect.width * 0.5;
+        this.y = this.effect.height * 0.5;
+    }
 }
 
 class MetaballsEffect {
@@ -50,6 +47,11 @@ class MetaballsEffect {
     draw(context){
         this.metaballsArray.forEach(metaball => metaball.draw(context));
     }
+    reset(newWidth, newHeight){
+        this.width = newWidth;
+        this.height = newHeight;
+        this.metaballsArray.forEach(metaball => metaball.reset());
+    }
 }
 
 const effect = new MetaballsEffect(canvas.width, canvas.height);
@@ -63,3 +65,11 @@ function animate(){
     requestAnimationFrame(animate);
 }
 animate();
+
+//resize canvas when window is resized
+window.addEventListener('resize', function() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    ctx.fillStyle = 'white';
+    effect.reset(canvas.width, canvas.height);
+});
